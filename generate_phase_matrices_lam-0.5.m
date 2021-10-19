@@ -7,12 +7,19 @@ phases=[];
 % keeping lambda=0.5 from r vs lam plot
 lamda=0.5;
 
+% select which to find phase matrix for: all erdos-reyni("er") graphs or all scale free("sf") graphs
+graph_type= "er";
+
 omega=generate_random(0.5,N);
 
 labels=[];
 for i=1:250
     y0=(generate_random(pi,N))';
-    a = readmatrix(sprintf('ER+SF_New/sf%i.txt', i)); 
+    if graph_type== "er"
+    a = readmatrix(sprintf('ER+SF_New/er%i.txt', i)); 
+    else
+    a = readmatrix(sprintf('ER+SF_New/sf%i.txt', i));
+    end   
     [t,y]=ode45(@(t,y)odefm(t,y,lamda),tspan,y0);
     pp=[];
     y=wrapToPi(y);
@@ -20,7 +27,11 @@ for i=1:250
     phases=[phases;pp];    
 end
 
-writematrix(phases,'sfphaseslam0.5.txt')
+if graph_type== "er"
+writematrix(phases,'erphases.txt')
+else
+writematrix(phases,'sfphases.txt')
+end
 
 function rr=generate_random(range,no_points)
 rr=range*rand(no_points,1);
