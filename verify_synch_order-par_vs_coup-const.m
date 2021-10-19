@@ -1,6 +1,6 @@
 global N omega a
 
-% select which to verify and plot: erdos-reyni("er") or scale free("sf") graph
+% select which to verify and plot for: a single erdos-reyni("er") graph or a single scale free("sf") graph
 graph_type= "er";
 
 if graph_type== "er"
