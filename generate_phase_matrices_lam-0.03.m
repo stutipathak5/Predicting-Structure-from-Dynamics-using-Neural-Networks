@@ -5,7 +5,7 @@ tspan=0:0.01:400;
 phases=[];
 
 % keeping lambda=0.5 from r vs lam plot
-lamda=0.5;
+lamda=0.03;
 
 % select which to find phase matrix for: all erdos-reyni("er") graphs or all scale free("sf") graphs
 graph_type= "er";
