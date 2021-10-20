@@ -5,8 +5,7 @@ from keras.models import Sequential
 from keras.layers.core import Dense, Activation, Dropout
 from sklearn.preprocessing import MinMaxScaler
 
-labels = np.loadtxt("/content/drive/My Drive/z.txt", delimiter=' ')
-labels = np.expand_dims(labels, axis=1)
+labels=np.concatenate((np.ones((250,1)),np.zeros((250,1))),axis=0)
 erphases = np.loadtxt("/content/drive/My Drive/erphases.txt", delimiter=',')
 sfphases = np.loadtxt("/content/drive/My Drive/sfphases.txt", delimiter=',')
 input =np.concatenate((np.concatenate((erphases, sfphases)),labels), axis=1)
@@ -48,10 +47,10 @@ plt.ylabel("Loss", fontsize=14)
 plt.legend(['Training Loss', 'Testing Loss'], loc='upper right')
 plt.show()
 
-print("ACTUAL CLASSES")
+print("ACTUAL VALUES")
 print(input[470:500,100])
 
-print("PREDICTED CLASSES")
+print("PREDICTED VALUES OF TWO LAYER MLP")
 pred=[]
 for i in model.predict(input[470:500,0:100]):
   if i>=0.5: pred.append(1)
