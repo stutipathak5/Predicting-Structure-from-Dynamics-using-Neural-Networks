@@ -30,7 +30,6 @@ def build(no_features, first_hidden, second_hidden):
 X_train, X_val, y_train, y_val = train_test_split(X, y, test_size=0.2, random_state=1)
 
 model = build(100,50,10)
-
 metrics = model.fit(X_train, y_train, validation_data=(X_val, y_val), epochs=100, verbose=0, batch_size=10)
 
 plt.plot(metrics.history['accuracy'])
